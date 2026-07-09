@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usman ❤️ Fajar | Wedding Invitation</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="loader">
+    <div class="bismillah">
+        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْم
+    </div>
+
+    <div class="loading-text">
+        Loading Invitation...
+    </div>
+</div>
+
+<div id="petals"></div>
+
+<header class="hero">
+
+    <div class="overlay">
+
+        <h3>Hosted By</h3>
+
+        <h1>Mr. & Mrs. Akhtar</h1>
+
+        <p>
+            request the honour of your presence
+            to celebrate the wedding of their beloved son
+        </p>
+
+        <h2 class="couple">
+            Usman
+            <span>&</span>
+            Fajar
+        </h2>
+
+        <p class="parents">
+            Daughter of<br>
+            Mr. & Mrs. Abdul Razzaq
+        </p>
+
+    </div>
+
+</header>
+
+<section class="countdown">
+
+<h2>Wedding Countdown</h2>
+
+<div id="timer">
+
+<div>
+<span id="days">00</span>
+<p>Days</p>
+</div>
+
+<div>
+<span id="hours">00</span>
+<p>Hours</p>
+</div>
+
+<div>
+<span id="minutes">00</span>
+<p>Minutes</p>
+</div>
+
+<div>
+<span id="seconds">00</span>
+<p>Seconds</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="events">
+
+<h2>Wedding Events</h2>
+
+<div class="card">
+
+<h3>🌿 Mehndi</h3>
+
+<p><strong>31 July 2026</strong></p>
+
+<p>
+88 Mian Colony<br>
+Ferozepur Road<br>
+Lahore
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🤵 Barat</h3>
+
+<p><strong>1 August 2026</strong></p>
+
+<p>
+Sehrabandi<br>
+3:00 PM
+</p>
+
+<p>
+Rida Marquee<br>
+Main GT Road<br>
+Near DHA<br>
+Gujranwala
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>🌸 Waleema</h3>
+
+<p><strong>2 August 2026</strong></p>
+
+<p>
+7:00 PM – 10:00 PM
+</p>
+
+<p>
+Viva La Vida<br>
+Garrison Events Complex<br>
+Lahore Cantt
+</p>
+
+</div>
+
+</section>
+
+<section class="quote">
+
+<h2>
+"And among His signs is that He created for you mates from among yourselves that you may find tranquility in them."
+</h2>
+
+<p>— Surah Ar-Rum 30:21</p>
+
+</section>
+
+<footer>
+
+<h2>
+We look forward to celebrating this joyous occasion with you.
+</h2>
+
+<h3>
+Usman ❤️ Fajar
+</h3>
+
+<p>
+With Best Compliments<br>
+Mr. & Mrs. Akhtar
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
