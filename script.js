@@ -1,191 +1,99 @@
-/* =====================================
-   USMAN ❤️ FAJAR
-   Wedding Invitation
-===================================== */
+const weddingDate = new Date("2026-07-31T00:00:00+05:00");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 window.addEventListener("load", () => {
-
     const loader = document.getElementById("loader");
-
-    setTimeout(() => {
-
-        loader.style.opacity = "0";
-        loader.style.transition = "1s";
-
-        setTimeout(() => {
-
-            loader.style.display = "none";
-
-        },1000);
-
-    },2500);
-
+    window.setTimeout(() => {
+        loader?.classList.add("is-hidden");
+    }, prefersReducedMotion ? 150 : 900);
 });
 
+const timerParts = {
+    days: document.getElementById("days"),
+    hours: document.getElementById("hours"),
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("seconds")
+};
 
-/* ==============================
-      COUNTDOWN
-============================== */
-
-const weddingDate = new Date("July 31, 2026 00:00:00").getTime();
-
-function updateTimer(){
-
-    const now = new Date().getTime();
-
-    const distance = weddingDate - now;
-
-    const days = Math.floor(distance/(1000*60*60*24));
-
-    const hours = Math.floor(
-        (distance%(1000*60*60*24))
-        /(1000*60*60)
-    );
-
-    const minutes = Math.floor(
-        (distance%(1000*60*60))
-        /(1000*60)
-    );
-
-    const seconds = Math.floor(
-        (distance%(1000*60))
-        /1000
-    );
-
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
-
+function pad(value) {
+    return String(Math.max(0, value)).padStart(2, "0");
 }
 
-setInterval(updateTimer,1000);
+function updateCountdown() {
+    const distance = weddingDate.getTime() - Date.now();
+    const note = document.getElementById("countdown-note");
 
-updateTimer();
+    if (distance <= 0) {
+        Object.values(timerParts).forEach((part) => {
+            if (part) part.textContent = "00";
+        });
+        if (note) note.textContent = "The wedding celebrations have begun.";
+        return;
+    }
 
+    const days = Math.floor(distance / 86400000);
+    const hours = Math.floor((distance % 86400000) / 3600000);
+    const minutes = Math.floor((distance % 3600000) / 60000);
+    const seconds = Math.floor((distance % 60000) / 1000);
 
-/* ==============================
-     FLOWER PETALS
-============================== */
-
-const flowers=[
-"🌸",
-"🌺",
-"🌼",
-"🌹",
-"💮",
-"🌷"
-];
-
-function createPetal(){
-
-    const petal=document.createElement("div");
-
-    petal.className="petal";
-
-    petal.innerHTML=
-    flowers[
-        Math.floor(
-            Math.random()*flowers.length
-        )
-    ];
-
-    petal.style.left=
-    Math.random()*100+"vw";
-
-    petal.style.animationDuration=
-    (6+Math.random()*6)+"s";
-
-    petal.style.fontSize=
-    (18+Math.random()*16)+"px";
-
-    document.body.appendChild(petal);
-
-    setTimeout(()=>{
-
-        petal.remove();
-
-    },12000);
-
+    if (timerParts.days) timerParts.days.textContent = pad(days);
+    if (timerParts.hours) timerParts.hours.textContent = pad(hours);
+    if (timerParts.minutes) timerParts.minutes.textContent = pad(minutes);
+    if (timerParts.seconds) timerParts.seconds.textContent = pad(seconds);
 }
 
-setInterval(createPetal,350);
+updateCountdown();
+window.setInterval(updateCountdown, 1000);
 
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.18 });
 
-/* ==============================
-     CARD ANIMATION
-============================== */
-
-const cards=document.querySelectorAll(".card");
-
-const observer=new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
-
-}
-
+document.querySelectorAll(".reveal").forEach((element, index) => {
+    element.style.transitionDelay = `${Math.min(index * 70, 360)}ms`;
+    revealObserver.observe(element);
 });
 
-},{threshold:.2});
+function createPetal() {
+    const petalField = document.getElementById("petal-field");
+    if (!petalField) return;
 
-cards.forEach(card=>{
+    const petal = document.createElement("span");
+    const duration = 8 + Math.random() * 7;
+    const drift = `${Math.round((Math.random() - 0.5) * 180)}px`;
 
-card.style.opacity="0";
+    petal.className = "petal";
+    petal.style.left = `${Math.random() * 100}vw`;
+    petal.style.animationDuration = `${duration}s`;
+    petal.style.transform = `rotate(${Math.random() * 180}deg)`;
+    petal.style.setProperty("--petal-drift", drift);
 
-card.style.transform="translateY(60px)";
-card.style.transition="1s";
-
-observer.observe(card);
-
-});
-
-
-/* ==============================
-     GOLDEN SPARKLES
-============================== */
-
-function sparkle(){
-
-const star=document.createElement("div");
-
-star.innerHTML="✨";
-
-star.style.position="fixed";
-
-star.style.left=Math.random()*100+"vw";
-
-star.style.top=Math.random()*100+"vh";
-
-star.style.fontSize="14px";
-
-star.style.opacity=".8";
-
-star.style.pointerEvents="none";
-
-star.style.transition="2s";
-
-document.body.appendChild(star);
-
-setTimeout(()=>{
-
-star.style.opacity="0";
-
-star.style.transform="scale(2)";
-
-},100);
-
-setTimeout(()=>{
-
-star.remove();
-
-},2200);
-
+    petalField.appendChild(petal);
+    window.setTimeout(() => petal.remove(), duration * 1000);
 }
 
-setInterval(sparkle,1200);
+function createSparkle() {
+    const sparkleField = document.getElementById("sparkle-field");
+    if (!sparkleField) return;
+
+    const sparkle = document.createElement("span");
+    const duration = 1500 + Math.random() * 1200;
+
+    sparkle.className = "sparkle";
+    sparkle.style.left = `${8 + Math.random() * 84}vw`;
+    sparkle.style.top = `${8 + Math.random() * 76}vh`;
+    sparkle.style.animationDuration = `${duration}ms`;
+
+    sparkleField.appendChild(sparkle);
+    window.setTimeout(() => sparkle.remove(), duration);
+}
+
+if (!prefersReducedMotion) {
+    window.setInterval(createPetal, 520);
+    window.setInterval(createSparkle, 1100);
+}
