@@ -511,6 +511,24 @@ h1 span {
     margin-top: 24px;
 }
 
+.event-contacts {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(244, 223, 159, 0.34);
+}
+
+.event-contacts p {
+    margin: 12px 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.event-contacts strong {
+    color: var(--ivory);
+    font-weight: 600;
+}
+
 .quote {
     width: min(1040px, calc(100% - 36px));
     margin: 20px auto 0;
